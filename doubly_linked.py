@@ -1,59 +1,55 @@
-# ------------------------------------Doubly linked list----------------------------- 
+# node definition
 
-class DoublyNode:
-    def __init__ ( self, val, next=None, prev =None):
+class DoubleNode:
+    def __init__ ( self , val , next=None, prev=None):
         self.val = val
-        self.next = next
+        self.next = next 
         self.prev = prev
         
     def __str__(self):
         return str(self.val)
-    
-Head = Tail = DoublyNode(1)
-print(Head )
 
-# ------------------------------------Doubly linked list----------------------------- 
-
-class DoublyNode:
-    def __init__ ( self, val, next=None, prev =None):
-        self.val = val
-        self.next = next
-        self.prev = prev
-        
-    def __str__(self):
-        return str(self.val)
-    
-Head = Tail = DoublyNode(1)
-# print(Head)
+# display nodes 
 
 def display(head):
-    curr = head
-    elements = []
+    curr=head
+    elements=[]
     while curr:
         elements.append(str(curr.val))
-        curr = curr.next
-    print (" <-> ".join(elements))
+        curr=curr.next
+    print(" <-> ".join(elements))
     
-display(Head)
+initial_head = initial_tail = DoubleNode(1)
 
-# Insert at beginning - O(1)
+display(initial_head)
 
-def insert_at_beginning ( head, tail , val ):
-    new_node = DoublyNode(val , next=head )
-    head.prev = new_node
+
+#insert at the beginning 
+
+def insert_beginning ( head, tail , val ):
+    new_node = DoubleNode(val , next = head)
+
+    if head:
+        head.prev = new_node
+    else:
+        tail = new_node
     return new_node, tail 
 
-head, tail = insert_at_beginning( Head , Tail , 7 )
+head , tail = insert_beginning( initial_head, initial_tail , 7)
 
-display(head)
+print(" current list: ")
+display (head)
 
-# Insert at the end - O(1)
+# insert at the end
 
-def insert_at_end ( head, tail , val ):
-    new_node = DoublyNode(val , prev=tail )
-    tail.next = new_node
-    return new_node, tail 
+def insert_end ( head, tail, val ):
+    new_node = DoubleNode( val , prev = tail )
+    if tail:
+        tail.next = new_node
+    else:
+        tail = new_node
+    return head, new_node
 
-head, tail = insert_at_end( Head , Tail , 9 )
-
+head, tail = insert_end (head, tail, 9)
+    
 display(head)
